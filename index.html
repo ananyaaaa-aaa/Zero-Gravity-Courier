@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zero Gravity Courier</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div class="stars" id="starLayer"></div>
+  <div class="particles" id="particleLayer"></div>
+  <div class="lens-flare"></div>
+
+  <section id="loadingScreen" class="screen active">
+    <div class="loader">
+      <div class="loader-ring"></div>
+      <p>Initializing orbital courier link</p>
+      <div class="load-bar"><span></span></div>
+    </div>
+  </section>
+
+  <section id="mainMenu" class="screen menu-screen">
+    <div class="brand">
+      <p class="eyebrow">Interstellar Logistics Corporation</p>
+      <h1>Zero Gravity Courier</h1>
+      <p class="tagline">One energy core. Twenty collapsing station sectors. No gravity.</p>
+    </div>
+    <div class="menu-panel glass">
+      <button id="continueBtn" class="primary">Continue Mission</button>
+      <button id="newGameBtn">New Mission</button>
+      <button id="levelSelectBtn">Level Select</button>
+      <button id="settingsBtn">Settings</button>
+      <button id="achievementsBtn">Achievements</button>
+      <button id="creditsBtn">Credits</button>
+    </div>
+  </section>
+
+  <section id="storyScreen" class="screen">
+    <div class="story-card glass">
+      <p class="eyebrow">Year 2179</p>
+      <h2>Final Core Delivery</h2>
+      <p>You are the fastest courier employed by the Interstellar Logistics Corporation.</p>
+      <p>A catastrophic reactor failure has left a massive orbital station without gravity.</p>
+      <p>Thousands of civilians depend on one final energy core.</p>
+      <p>Your mission is to deliver it before the station completely collapses.</p>
+      <p class="warning">Failure is not an option.</p>
+      <button id="beginLevelOneBtn" class="primary">Launch</button>
+    </div>
+  </section>
+
+  <section id="levelSelectScreen" class="screen panel-screen">
+    <div class="topbar glass">
+      <button class="backBtn icon-btn" title="Back">‹</button>
+      <h2>Level Select</h2>
+    </div>
+    <div id="levelGrid" class="level-grid"></div>
+  </section>
+
+  <section id="settingsScreen" class="screen panel-screen">
+    <div class="topbar glass">
+      <button class="backBtn icon-btn" title="Back">‹</button>
+      <h2>Settings</h2>
+    </div>
+    <div class="settings-grid glass">
+      <label><span>Music</span><input id="musicToggle" type="checkbox" checked /></label>
+      <label><span>Effects</span><input id="sfxToggle" type="checkbox" checked /></label>
+      <label><span>Screen Shake</span><input id="shakeToggle" type="checkbox" checked /></label>
+      <label><span>Motion Blur</span><input id="blurToggle" type="checkbox" checked /></label>
+      <label><span>Camera Zoom</span><input id="zoomToggle" type="checkbox" checked /></label>
+    </div>
+  </section>
+
+  <section id="achievementsScreen" class="screen panel-screen">
+    <div class="topbar glass">
+      <button class="backBtn icon-btn" title="Back">‹</button>
+      <h2>Achievements</h2>
+    </div>
+    <div id="achievementList" class="achievement-list"></div>
+  </section>
+
+  <section id="creditsScreen" class="screen panel-screen">
+    <div class="topbar glass">
+      <button class="backBtn icon-btn" title="Back">‹</button>
+      <h2>Credits</h2>
+    </div>
+    <div class="credits glass">
+      <p>Original concept expanded into a twenty-level zero-gravity delivery run.</p>
+      <p>Visual style: blue neon, purple warning systems, glass UI, station metal, holograms, stars, and synthetic audio.</p>
+      <p>No external frameworks or assets.</p>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen">
+    <div class="hud">
+      <div class="hud-cluster glass">
+        <div><span>Level</span><strong id="hudLevel">1 / 20</strong></div>
+        <div><span>Oxygen</span><strong id="hudOxygen">100%</strong></div>
+        <div><span>Time</span><strong id="hudTime">00:00</strong></div>
+        <div><span>Deaths</span><strong id="hudDeaths">0</strong></div>
+      </div>
+      <div class="hud-buttons">
+        <button id="restartBtn" class="icon-btn glass" title="Restart">↻</button>
+        <button id="pauseBtn" class="icon-btn glass" title="Pause">Ⅱ</button>
+      </div>
+    </div>
+    <div id="mobileControls" class="mobile-controls">
+      <div id="stickBase" class="stick-base"><div id="stickKnob" class="stick-knob"></div></div>
+      <button id="boostTouch" class="touch-btn">Boost</button>
+      <button id="brakeTouch" class="touch-btn">Brake</button>
+    </div>
+  </section>
+
+  <section id="pauseScreen" class="screen overlay">
+    <div class="overlay-card glass">
+      <p class="eyebrow">Mission Paused</p>
+      <h2>Hold position.</h2>
+      <button id="resumeBtn" class="primary">Resume</button>
+      <button id="pauseRestartBtn">Restart Level</button>
+      <button id="pauseMenuBtn">Main Menu</button>
+    </div>
+  </section>
+
+  <section id="victoryScreen" class="screen overlay">
+    <div class="overlay-card glass">
+      <p class="eyebrow">Delivery Confirmed</p>
+      <h2 id="victoryTitle">Level Complete</h2>
+      <p id="victoryText"></p>
+      <button id="nextLevelBtn" class="primary">Next Level</button>
+      <button id="victoryMenuBtn">Main Menu</button>
+    </div>
+  </section>
+
+  <section id="gameOverScreen" class="screen overlay">
+    <div class="overlay-card glass danger">
+      <p class="eyebrow">Courier Lost</p>
+      <h2>Oxygen depleted.</h2>
+      <button id="retryBtn" class="primary">Retry</button>
+      <button id="gameOverMenuBtn">Main Menu</button>
+    </div>
+  </section>
+
+  <div id="toast" class="toast glass"></div>
+  <script src="script.js"></script>
+</body>
+</html>
